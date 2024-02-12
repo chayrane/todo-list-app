@@ -1,0 +1,16 @@
+<div class="container">
+    <h3 class="text-center mb-3 your-todos-style">Todo List App using Angular.</h3>
+    
+    <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+    <h3 class="text-center your-todos-style">Your Todos</h3>
+
+    <!-- ngIf Directives -->
+    <div *ngIf="this.todos.length === 0; else elseBlock">No Todos to display.</div>
+    <ng-template #elseBlock>
+        <!-- *ngFor Directive -->
+        <div *ngFor="let todo of todos; index as i">
+            <!-- deleteTodo($event) is an user-defined event -->
+            <app-todo-item [todo]="todo" [i]="i" (todoDelete)="deleteTodo($event)" (todoCheckBox)="toggleTodo($event)"></app-todo-item>
+        </div>
+    </ng-template>
+</div>
